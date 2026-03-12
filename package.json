@@ -12,11 +12,13 @@
     "remind": "ts-node src/index.ts remind"
   },
   "dependencies": {
+    "@types/dotenv": "^6.1.1",
+    "date-fns": "^3.6.0",
+    "date-fns-tz": "^3.1.3",
+    "dotenv": "^17.3.1",
     "googleapis": "^144.0.0",
     "node-notifier": "^10.0.1",
-    "readline-sync": "^1.4.10",
-    "date-fns": "^3.6.0",
-    "date-fns-tz": "^3.1.3"
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "@types/node": "^20.14.0",
