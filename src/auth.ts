@@ -3,7 +3,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as readline from 'readline';
 
-const SCOPES = ['https://www.googleapis.com/auth/calendar'];
+const SCOPES = [
+  'https://www.googleapis.com/auth/calendar',
+  'https://www.googleapis.com/auth/gmail.readonly',
+  'https://www.googleapis.com/auth/drive',
+  'https://www.googleapis.com/auth/documents',
+  'https://www.googleapis.com/auth/spreadsheets',
+];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 
 export function getOAuth2Client() {
@@ -19,6 +25,15 @@ export function getOAuth2Client() {
   }
 
   return new google.auth.OAuth2(clientId, clientSecret, redirectUri);
+}
+
+export function getAuthUrl(): string {
+  const oAuth2Client = getOAuth2Client();
+  return oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+    prompt: 'consent',
+  });
 }
 
 export async function authorize(): Promise<InstanceType<typeof google.auth.OAuth2>> {
@@ -39,9 +54,10 @@ async function getNewToken(
   const authUrl = oAuth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES,
+    prompt: 'consent',
   });
 
-  console.log('\n🔐 Google Calendar の認証が必要です。');
+  console.log('\n🔐 Google 認証が必要です。');
   console.log('以下のURLをブラウザで開いてください:\n');
   console.log(authUrl);
   console.log('\n認証後に表示されたコードを入力してください:');
