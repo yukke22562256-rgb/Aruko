@@ -10,6 +10,7 @@ import { getUnreadMails, printUnreadMails } from './gmail';
 import { listRecentFiles, searchFiles, printFiles } from './drive';
 import { readDocument, appendToDocument, printDocument } from './docs';
 import { readSheet, appendToSheet, printSheet } from './sheets';
+import { initSheets, listStudents, addStudent, addLessonReport, showLessonHistory } from './student';
 import { getAuthUrl } from './auth';
 
 const command = process.argv[2];
@@ -146,7 +147,13 @@ function printHelp(): void {
   console.log('  sheet <ID>      スプレッドシートを表示');
   console.log('  sheet-append <ID> スプレッドシートに行を追加');
   console.log('  auth-url        新しい認証URLを表示');
-  console.log('  help            このヘルプを表示\n');
+  console.log('  help            このヘルプを表示');
+  console.log('\n生徒管理:');
+  console.log('  student-init    生徒管理シートのヘッダーを初期化');
+  console.log('  student-list    在籍生徒一覧を表示');
+  console.log('  student-add     新しい生徒を登録');
+  console.log('  lesson-add      授業記録を追加');
+  console.log('  lesson-history  生徒の授業履歴を表示\n');
 }
 
 async function main(): Promise<void> {
@@ -158,7 +165,12 @@ async function main(): Promise<void> {
     case 'doc':          await showDocument(); break;
     case 'doc-append':   await appendDoc(); break;
     case 'sheet':        await showSheet(); break;
-    case 'sheet-append': await appendSheet(); break;
+    case 'sheet-append':    await appendSheet(); break;
+    case 'student-init':    await initSheets(); break;
+    case 'student-list':    await listStudents(); break;
+    case 'student-add':     await addStudent(); break;
+    case 'lesson-add':      await addLessonReport(); break;
+    case 'lesson-history':  await showLessonHistory(); break;
     case 'auth-url':
       console.log('\n🔐 認証URL:\n');
       console.log(getAuthUrl());

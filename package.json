@@ -9,7 +9,12 @@
     "dev": "ts-node src/index.ts",
     "auth": "ts-node src/auth.ts",
     "add": "ts-node src/index.ts add",
-    "remind": "ts-node src/index.ts remind"
+    "remind": "ts-node src/index.ts remind",
+    "student-init": "ts-node src/index.ts student-init",
+    "student-list": "ts-node src/index.ts student-list",
+    "student-add": "ts-node src/index.ts student-add",
+    "lesson-add": "ts-node src/index.ts lesson-add",
+    "lesson-history": "ts-node src/index.ts lesson-history"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",
