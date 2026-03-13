@@ -1,5 +1,9 @@
 # Aruko - 朝の挨拶 & Google Calendar 同期
 
+## Arukoの哲学
+
+[PHILOSOPHY.md](./PHILOSOPHY.md) をご覧ください。
+
 Google Calendar と同期して、朝の挨拶と今日の予定を表示する TypeScript CLI アプリです。
 
 ## 機能
