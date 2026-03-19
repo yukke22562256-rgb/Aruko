@@ -11,6 +11,7 @@ import { listRecentFiles, searchFiles, printFiles } from './drive';
 import { readDocument, appendToDocument, printDocument } from './docs';
 import { readSheet, appendToSheet, printSheet } from './sheets';
 import { initSheets, listStudents, addStudent, addLessonReport, showLessonHistory } from './student';
+import { initBillingSheet, generateMonthlyBilling, listBilling, markAsPaid, billingReport } from './billing';
 import { getAuthUrl } from './auth';
 
 const command = process.argv[2];
@@ -153,7 +154,13 @@ function printHelp(): void {
   console.log('  student-list    在籍生徒一覧を表示');
   console.log('  student-add     新しい生徒を登録');
   console.log('  lesson-add      授業記録を追加');
-  console.log('  lesson-history  生徒の授業履歴を表示\n');
+  console.log('  lesson-history  生徒の授業履歴を表示');
+  console.log('\n月謝・請求管理:');
+  console.log('  billing-init    請求管理シートのヘッダーを初期化');
+  console.log('  billing-generate 月次請求エントリを生成（生徒マスタから一括）');
+  console.log('  billing-list    月次請求一覧を表示（未払/支払済）');
+  console.log('  billing-paid    支払い済みとして記録');
+  console.log('  billing-report  月次収入レポートを表示\n');
 }
 
 async function main(): Promise<void> {
@@ -171,6 +178,11 @@ async function main(): Promise<void> {
     case 'student-add':     await addStudent(); break;
     case 'lesson-add':      await addLessonReport(); break;
     case 'lesson-history':  await showLessonHistory(); break;
+    case 'billing-init':    await initBillingSheet(); break;
+    case 'billing-generate': await generateMonthlyBilling(); break;
+    case 'billing-list':    await listBilling(); break;
+    case 'billing-paid':    await markAsPaid(); break;
+    case 'billing-report':  await billingReport(); break;
     case 'auth-url':
       console.log('\n🔐 認証URL:\n');
       console.log(getAuthUrl());

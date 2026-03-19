@@ -14,7 +14,12 @@
     "student-list": "ts-node src/index.ts student-list",
     "student-add": "ts-node src/index.ts student-add",
     "lesson-add": "ts-node src/index.ts lesson-add",
-    "lesson-history": "ts-node src/index.ts lesson-history"
+    "lesson-history": "ts-node src/index.ts lesson-history",
+    "billing-init": "ts-node src/index.ts billing-init",
+    "billing-generate": "ts-node src/index.ts billing-generate",
+    "billing-list": "ts-node src/index.ts billing-list",
+    "billing-paid": "ts-node src/index.ts billing-paid",
+    "billing-report": "ts-node src/index.ts billing-report"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",

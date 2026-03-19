@@ -30,11 +30,21 @@
 - 日付、生徒ID、生徒名、担当講師
 - 実施内容、宿題、次回の目標、保護者への連絡事項
 
+**請求管理** (`請求管理` シート):
+- 月（YYYY-MM）、生徒ID、生徒名、月謝
+- 支払日、支払方法（現金/振込）、状態（未払/支払済）、備考
+
 ### ワークフロー（日次運用）
 1. 毎朝 `npm run dev` → 今日の予定を確認（挨拶 + カレンダー）
 2. `npm run remind` → cron で自動リマインダー通知
 3. 授業後に `npm run lesson-add` → 授業記録をシートに追記
 4. 保護者連絡事項はシートで一元管理
+
+### ワークフロー（月次運用）
+1. 月初に `npm run billing-generate` → 在籍生徒の月次請求エントリを一括生成
+2. 集金のたびに `npm run billing-paid` → 支払い済みを記録（現金/振込）
+3. `npm run billing-list` → 未払い生徒を確認・督促
+4. 月末に `npm run billing-report` → 月次収入レポートで入金状況を把握
 
 ## 技術スタック
 
@@ -70,6 +80,11 @@
 | `npm run student-add` | 新しい生徒を登録 |
 | `npm run lesson-add` | 授業記録を追加 |
 | `npm run lesson-history` | 生徒の授業履歴を表示 |
+| `npm run billing-init` | 請求管理シートのヘッダー初期化 |
+| `npm run billing-generate` | 月次請求エントリを生徒マスタから一括生成 |
+| `npm run billing-list` | 月次請求一覧を表示（未払/支払済） |
+| `npm run billing-paid` | 支払い済みとして記録 |
+| `npm run billing-report` | 月次収入レポートを表示 |
 
 ## 環境変数（.env）
 
