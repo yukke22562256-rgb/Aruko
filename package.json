@@ -14,7 +14,11 @@
     "student-list": "ts-node src/index.ts student-list",
     "student-add": "ts-node src/index.ts student-add",
     "lesson-add": "ts-node src/index.ts lesson-add",
-    "lesson-history": "ts-node src/index.ts lesson-history"
+    "lesson-history": "ts-node src/index.ts lesson-history",
+    "song-init": "ts-node src/index.ts song-init",
+    "song-list": "ts-node src/index.ts song-list",
+    "song-add": "ts-node src/index.ts song-add",
+    "song-seed": "ts-node src/index.ts song-seed"
   },
   "dependencies": {
     "@types/dotenv": "^6.1.1",

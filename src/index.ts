@@ -11,6 +11,7 @@ import { listRecentFiles, searchFiles, printFiles } from './drive';
 import { readDocument, appendToDocument, printDocument } from './docs';
 import { readSheet, appendToSheet, printSheet } from './sheets';
 import { initSheets, listStudents, addStudent, addLessonReport, showLessonHistory } from './student';
+import { initSongSheet, listSongs, addSong, seedTwoSongs } from './songs';
 import { getAuthUrl } from './auth';
 
 const command = process.argv[2];
@@ -153,7 +154,12 @@ function printHelp(): void {
   console.log('  student-list    在籍生徒一覧を表示');
   console.log('  student-add     新しい生徒を登録');
   console.log('  lesson-add      授業記録を追加');
-  console.log('  lesson-history  生徒の授業履歴を表示\n');
+  console.log('  lesson-history  生徒の授業履歴を表示');
+  console.log('\n曲管理:');
+  console.log('  song-init       曲マスタシートのヘッダーを初期化');
+  console.log('  song-list       曲一覧を表示');
+  console.log('  song-add        新しい曲を登録');
+  console.log('  song-seed       今日作った２曲をサンプル登録\n');
 }
 
 async function main(): Promise<void> {
@@ -171,6 +177,10 @@ async function main(): Promise<void> {
     case 'student-add':     await addStudent(); break;
     case 'lesson-add':      await addLessonReport(); break;
     case 'lesson-history':  await showLessonHistory(); break;
+    case 'song-init':       await initSongSheet(); break;
+    case 'song-list':       await listSongs(); break;
+    case 'song-add':        await addSong(); break;
+    case 'song-seed':       await seedTwoSongs(); break;
     case 'auth-url':
       console.log('\n🔐 認証URL:\n');
       console.log(getAuthUrl());
